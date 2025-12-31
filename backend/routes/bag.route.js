@@ -3,7 +3,7 @@ import bagController from '../controllers/bag.controller.js';
 import multer from 'multer';
 
 
-const bagRouter = express.Router();
+const router = express.Router();
 
 // Image Storage Engine
 const storage = multer.diskStorage({
@@ -15,8 +15,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage});
 
-bagRouter.post('/add', upload.single("image"), bagController.addBag);
-bagRouter.get('/list', bagController.listBag);
-bagRouter.delete('/remove', bagController.removeBag);
+router.post('/add', upload.single("image"), bagController.addBag);
+router.get('/list', bagController.listBag);
+router.delete('/remove', bagController.removeBag);
 
-export default bagRouter;
+export default router;
