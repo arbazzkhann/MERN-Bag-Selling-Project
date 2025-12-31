@@ -1,12 +1,13 @@
 import { createContext, useEffect, useState } from "react";
-import { bag_list } from "../assets/assets";
-
+import axios from "axios";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const url = "http://localhost:5000";
     const [token, setToken] = useState("");
+
+    const [bag_list, setBagList] = useState([]);
 
     const addToCart = (itemId) => {
         if(!cartItems[itemId]) {
@@ -33,11 +34,20 @@ const StoreContextProvider = (props) => {
         return totalAmount;
     }
 
+    const fetchBagList = async () => {
+        const response = await axios.get(`${url}/api/bag/list`);
+        setBagList(response.data.data);
+    }
+
     useEffect(() => {
-        if(localStorage.getItem('token')) {
-            setToken(localStorage.getItem('token'));
+        async function loadData () {
+            await fetchBagList();
+            if(localStorage.getItem('token')) {
+                setToken(localStorage.getItem('token'));
+            }
         }
-    })
+        loadData();
+    }, []);
 
     const contextValue = {
         bag_list,
@@ -51,7 +61,9 @@ const StoreContextProvider = (props) => {
         getTotalCartAmount,
 
         token,
-        setToken
+        setToken,
+
+        fetchBagList,
     }
 
     return (
