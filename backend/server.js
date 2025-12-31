@@ -5,6 +5,7 @@ import "dotenv/config.js";
 import { connectDB } from "./config/db.js";
 import bagRouter from "./routes/bag.route.js";
 import userRouter from "./routes/user.route.js";
+import cartRouter from "./routes/cart.route.js";
 
 //app config
 const app = express();
@@ -20,8 +21,9 @@ connectDB();
 
 //api endpoints
 app.use('/api/bag', bagRouter);
-app.use('/images', express.static('uploads'));
+app.use('/images', express.static('uploads')); //static images endpoint
 app.use('/api/user', userRouter);
+app.use('/api/cart', cartRouter);
 
 
 app.get("/", (req, res) => {
