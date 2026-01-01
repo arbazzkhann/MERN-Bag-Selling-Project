@@ -27,6 +27,6 @@ const bagSchema = new mongoose.Schema({
     }
 });
 
-const BagModel = mongoose.models.bag || mongoose.model("BagModel", bagSchema);
+const BagModel = mongoose.models.BagModel || mongoose.model("BagModel", bagSchema);
 
 export default BagModel;
