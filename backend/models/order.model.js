@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema({
         default: "Processing"
     },
     date: {
-        type: date,
+        type: Date,
         default: Date.now()
     },
     payment: {
