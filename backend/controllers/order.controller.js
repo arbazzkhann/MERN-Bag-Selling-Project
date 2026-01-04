@@ -111,8 +111,27 @@ const userOrder = async (req, res) => {
     }
 }
 
+// listing orders for admin panel
+const listOrders = async (req, res) => {
+    try {
+        const orders = await OrderModel.find({});
+        
+        res.status(200).json({
+            success: true,
+            data: orders
+        })
+    }
+    catch (error) {
+        res.status(400).json({
+            success: false,
+            message: "Error while list orders"
+        });
+    }
+}
+
 export default {
     placeOrder,
     verifyOrder,
     userOrder,
+    listOrders,
 }

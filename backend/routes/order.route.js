@@ -8,4 +8,7 @@ router.post('/place', authMiddleware, orderController.placeOrder);
 router.post('/verify', authMiddleware, orderController.verifyOrder);
 router.post('/user-orders', authMiddleware, orderController.userOrder);
 
+//for admin panel
+router.post('/list', orderController.listOrders);
+
 export default router;
