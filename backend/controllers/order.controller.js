@@ -91,7 +91,28 @@ const verifyOrder = async (req, res) => {
     }
 }
 
+//user orders for frontend
+const userOrder = async (req, res) => {
+    try {
+        const orders = await OrderModel.find({
+            userId: req.body.userId.id,
+        });
+
+        res.status(200).json({
+            success: true,
+            data: orders
+        });
+    } 
+    catch (error) {
+        res.status(400).json({
+            success: false,
+            message: "Error while userOrder"
+        });
+    }
+}
+
 export default {
     placeOrder,
     verifyOrder,
+    userOrder,
 }
