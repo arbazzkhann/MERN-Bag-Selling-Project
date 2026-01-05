@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import "./Home.css"
-import Header from '../../components/Header/Header'
-import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
-import BagDisplay from '../../components/BagDisplay/BagDisplay'
-import AppDownload from '../../components/AppDownload/AppDownload'
+import React, { useState } from 'react';
+import "./Home.css";
+import Header from '../../components/Header/Header';
+import ExploreBags from '../../components/ExploreBags/ExploreBags';
+import BagDisplay from '../../components/BagDisplay/BagDisplay';
 
 const Home = () => {
     const [category, setCategory] = useState("All")
@@ -11,9 +10,8 @@ const Home = () => {
   return (
     <div>
         <Header/>
-        <ExploreMenu category={category} setCategory={setCategory}/>
+        <ExploreBags category={category} setCategory={setCategory}/>
         <BagDisplay category={category} setCategory={setCategory}/>
-        <AppDownload/>
     </div>
   )
 }
