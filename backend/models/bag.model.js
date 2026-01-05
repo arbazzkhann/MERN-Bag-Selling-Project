@@ -5,10 +5,6 @@ const bagSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
     mrp: {
         type: Number,
         required: true
