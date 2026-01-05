@@ -129,9 +129,28 @@ const listOrders = async (req, res) => {
     }
 }
 
+// api for updating order status for admin
+const updateStatus = async (req, res) => {
+    try {
+        await OrderModel.findByIdAndUpdate(req.body.orderId, {status: req.body.status});
+
+        res.status(200).json({
+            success: true,
+            message: "Status Updated"
+        });
+    }
+    catch(err) {
+        res.status(400).json({
+            success: false,
+            message: "Error while"
+        });
+    }
+}
+
 export default {
     placeOrder,
     verifyOrder,
     userOrder,
     listOrders,
+    updateStatus
 }

@@ -9,6 +9,7 @@ router.post('/verify', authMiddleware, orderController.verifyOrder);
 router.post('/user-orders', authMiddleware, orderController.userOrder);
 
 //for admin panel
-router.post('/list', orderController.listOrders);
+router.get('/list', orderController.listOrders);
+router.post('/status', orderController.updateStatus);
 
 export default router;
