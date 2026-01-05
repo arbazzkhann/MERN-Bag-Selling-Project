@@ -18,5 +18,9 @@ const upload = multer({storage});
 router.post('/add', upload.single("image"), bagController.addBag);
 router.get('/list', bagController.listBag);
 router.delete('/remove', bagController.removeBag);
+router.put('/update', bagController.updateBag);
+
+router.post('/get-by-id', bagController.getById);
+
 
 export default router;

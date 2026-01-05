@@ -1,15 +1,13 @@
 import BagModel from "../models/bag.model.js";
 import fs from 'fs';
 
-
 //add bag item
 const addBag = async (req, res) => {
-    const { name, email, description, mrp, price, image, category } = req.body;
+    const { name, email, mrp, price, image, category } = req.body;
     let image_filename = `${req.file.filename}`; 
 
     const bag = new BagModel({
         name,
-        description,
         mrp,
         price,
         image: image_filename,
@@ -74,8 +72,64 @@ const removeBag = async (req, res) => {
     }
 };
 
+const getById = async (req, res) => {
+    const { id } = req.body;
+
+    try {
+        const bag = await BagModel.findById(id);
+
+        if(!bag) {
+            res.status(400).json({
+                success: false,
+                message: "Product not found!"
+            });
+        }
+    
+        res.status(200).json({
+            success: true,
+            data: bag
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            success: false,
+            message: "Product not found!"
+        });
+    }
+}
+
+const updateBag = async (req, res) => {
+    const {id, data} = req.body;
+    console.log("id and data: ", id, data);
+
+    
+
+    try {
+        await BagModel.findByIdAndUpdate(id, {
+            name: data.name,
+            category: data.category,
+            mrp: data.mrp,
+            price: data.price
+        },
+        { new: true });
+
+        res.status(200).json({
+            success: true,
+            message: "Product updated successfully"
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            success: false,
+            message: "Error while updating!"
+        });
+    }
+}
+
 export default {
     addBag,
     listBag,
-    removeBag
+    removeBag,
+    getById,
+    updateBag
 }
