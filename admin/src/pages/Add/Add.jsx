@@ -8,10 +8,9 @@ const Add = ({url}) => {
     const [ image, setImage ] = useState(false);
     const [ data, setData ] = useState({
         name: "",
-        description: "",
         mrp: "",
         price: "",
-        category: "Salad"
+        category: ""
     });
 
     const onChangeHandler = (e) => {
@@ -27,7 +26,6 @@ const Add = ({url}) => {
         
         const formData = new FormData();
         formData.append('name', data.name);
-        formData.append('description', data.description);
         formData.append('mrp', Number(data.mrp));
         formData.append('price', Number(data.price));
         formData.append('category', data.category);
@@ -39,7 +37,6 @@ const Add = ({url}) => {
         if(response.data.success) {
             setData({
                 name: "",
-                description: "",
                 mrp: "",
                 price: "",
                 category: "Backpacks"
@@ -67,21 +64,21 @@ const Add = ({url}) => {
                 <p>Product name</p>
                 <input onChange={onChangeHandler} value={data.name} type="text" name="name" placeholder="Enter product name" />
             </div>
-            <div className="add-product-description flex-col">
+            {/* <div className="add-product-description flex-col">
                 <p>Product description</p>
                 <textarea onChange={onChangeHandler} value={data.description} name="description" rows="6" placeholder='Enter description here'></textarea>
-            </div>
+            </div> */}
             <div className="add-category-price">
                 <div className="add-category flex-col">
                     <p>Product category</p>
-                    <select onChange={onChangeHandler} value={data.category} name="category">
+                    <select onChange={onChangeHandler} value={data.category} name="category" required>
+                        <option value="" disabled selected>Select</option>
                         <option value="Backpacks">Backpacks</option>
                         <option value="Handbags">Handbags</option>
                         <option value="Laptop Bags">Laptop Bags</option>
                         <option value="Travel Bags">Travel Bags</option>
                         <option value="GYM Bags">GYM Bags</option>
                         <option value="School Bags">School Bags</option>
-                        <option value="Brief Cases">Brief Cases</option>
                         <option value="Camera Bags">Camera Bags</option>
                     </select>
                 </div>
