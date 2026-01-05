@@ -3,7 +3,7 @@ import "./BagItem.css"
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext';
 
-const BagItem = ({id, name, price, image}) => {
+const BagItem = ({id, name, mrp, price, image}) => {
   const {cartItems, setCartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
   // const [expanded, setExpanded] = useState(false);
   // const lines = 3;
@@ -40,6 +40,7 @@ const BagItem = ({id, name, price, image}) => {
             {expanded ? "See less" : "See more"}
           </button> */}
 
+          <p className="bag-item-mrp">₹{mrp}</p>
           <p className="bag-item-price">₹{price}</p>
         </div>
       </div>

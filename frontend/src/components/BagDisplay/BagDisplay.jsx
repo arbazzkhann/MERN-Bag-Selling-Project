@@ -12,7 +12,7 @@ const BagDisplay = ({category}) => {
         <div className="bag-display-list">
             {bag_list.map((item, index) => {
               if(category === "All" || category === item.category) {
-                return <BagItem key={index} id={item._id} name={item.name} price={item.price} image={item.image}/>
+                return <BagItem key={index} id={item._id} name={item.name} mrp={item.mrp} price={item.price} image={item.image}/>
               }
             })}
         </div>

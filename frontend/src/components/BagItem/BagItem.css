@@ -37,11 +37,19 @@
     font-size: 12px;
 }
 
+.bag-item-mrp {
+    color: #b0b0b0;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 10px 0px;
+    text-decoration: line-through;
+}
+
 .bag-item-price {
     color: tomato;
     font-size: 22px;
-    font-weight: 500;
-    margin: 10px 0px
+    font-weight: 700;
+    margin: 4px 0px;
 }
 
 .bag-item-image-container {
