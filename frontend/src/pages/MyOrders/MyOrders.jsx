@@ -17,9 +17,6 @@ const MyOrders = () => {
     } 
 
     useEffect(() => {
-        if(!token) {
-            navigate('/cart');
-        }
         fetchOrders();
     }, [token]);
 
@@ -46,7 +43,7 @@ const MyOrders = () => {
                         <p>₹{order.amount}.00</p>
                         <p>items: {order.items.length}.00</p>
                         <p><span>&#x25cf;</span><b>{order.status}</b></p>
-                        <button>Track Order</button>
+                        <button onClick={fetchOrders}>Track Order</button>
                     </div>
                 )
             })}
