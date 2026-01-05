@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import "./BagItem.css"
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext';
 
-const BagItem = ({id, name, price, description, image}) => {
+const BagItem = ({id, name, price, image}) => {
   const {cartItems, setCartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
+  // const [expanded, setExpanded] = useState(false);
+  // const lines = 3;
 
   return (
     <div className='bag-item'>
@@ -25,8 +27,20 @@ const BagItem = ({id, name, price, description, image}) => {
             <p>{name}</p>
             <img src={assets.rating_starts} alt=""/>
           </div>
-          <p className="bag-item-description">{description}</p>
-          <p className="bag-item-price">${price}</p>
+          {/* <p 
+            className={`bag-item-description description ${expanded ? "expanded" : ""}`} 
+            style={{ WebkitLineClamp: expanded ? "unset" : lines }}
+          >
+            {description}
+          </p> */}
+          {/* <button
+            className="read-more-btn"
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? "See less" : "See more"}
+          </button> */}
+
+          <p className="bag-item-price">₹{price}</p>
         </div>
       </div>
     </div>

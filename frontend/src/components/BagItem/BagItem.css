@@ -72,3 +72,31 @@
 .bag-item-counter img {
     width: 30px;
 }
+
+
+
+.read-more-container {
+  max-width: 500px;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #8b5e34; /* brown theme */
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 4px;
+  padding: 0;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
+}
