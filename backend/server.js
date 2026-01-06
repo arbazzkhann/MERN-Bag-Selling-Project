@@ -15,15 +15,11 @@ const PORT = process.env.PORT || 5000;
 
 //middleware
 app.use(express.json());
-app.use(cors("https://mern-bag-selling-project.onrender.com"));
+app.use(cors());
 
 //db connection
-app.use(() => {
-    if(!connectDB) {
-        connectDB();
-    }
-    next();
-})
+connectDB();
+
 
 //api endpoints
 app.use('/api/bag', bagRouter);
