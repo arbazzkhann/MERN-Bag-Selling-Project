@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 //middleware
 app.use(express.json());
-app.use(cors("http://localhost:5173"));
+app.use(cors("https://mern-bag-selling-project.onrender.com"));
 
 //db connection
 connectDB();
