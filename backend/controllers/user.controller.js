@@ -36,7 +36,6 @@ const loginUser = async (req, res, next) => {
         });
     } 
     catch (error) {
-        console.log(error);
         res.status(400).json({
             success: false,
             message: "Error while login."
@@ -100,7 +99,6 @@ const registerUser = async (req, res, next) => {
 
     } 
     catch (error) {
-        console.log("Error");
         res.status(400).json({
             success: false,
             message: "Error"

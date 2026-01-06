@@ -24,7 +24,6 @@ const addBag = async (req, res) => {
         });
     }
     catch(err) {
-        console.log(err);
         res.status(400).json({
             success: false,
             message: err
@@ -42,7 +41,6 @@ const listBag = async (req, res) => {
         });
     }
     catch(err) {
-        console.log("Error while listBag: ", err);
         res.status(400).json({
             success: false,
             message: "Error while listBag :("
@@ -65,7 +63,6 @@ const removeBag = async (req, res) => {
         });
     }
     catch(err) {
-        console.log(err);
         res.status(400).json({
             success: false,
             message: "Error"
@@ -101,7 +98,6 @@ const getById = async (req, res) => {
 
 const updateBag = async (req, res) => {
     const {id, data} = req.body;
-    console.log("id and data: ", id, data);
 
     
 
