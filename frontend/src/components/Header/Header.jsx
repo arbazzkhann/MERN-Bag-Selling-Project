@@ -1,13 +1,14 @@
 import React from 'react';
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <div className='header'>
         <div className='header-contents'>
             <h2>Grab your favourite bags here</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi accusantium unde tempore labore suscipit sapiente, nihil consequuntur deleniti natus facere!</p>
-            <button>View Menu</button>
+            <p>Explore a curated collection of stylish, durable bags designed for work, travel, and everyday use - all in one place.</p>
+            <Link to="/products"><button>View Products</button></Link>
         </div>
     </div>
   )
