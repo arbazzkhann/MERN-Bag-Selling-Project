@@ -9,10 +9,10 @@ const Footer = () => {
         <div className="footer-content">
             <div className="footer-content-left">
                 <img src={assets.logo} height="60px" alt="" />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo pariatur quae dolore. Voluptatum laboriosam fuga aliquam blanditiis dolorem iste quod?</p>
+                <p>Bagify is your trusted destination for stylish, durable bags designed to meet everyday needs with quality and comfort.</p>
                 <div className="footer-social-icons">
-                    <Link to="https://linkedin.com/in/arbazzkhann"><img src={assets.linkedin_icon} alt="" /></Link>
-                    <Link to="#"><img src={assets.twitter_icon} alt="" /></Link>
+                    <a href="https://linkedin.com/in/arbazzkhann" target='_blank'><img src={assets.linkedin_icon} alt="" /></a>
+                    <a href="https://github.com/arbazzkhann" target='_blank'><img src={assets.github_icon} alt="" /></a>
                 </div>
             </div>
             <div className="footer-content-center">
@@ -33,7 +33,7 @@ const Footer = () => {
             </div>
         </div>
         <hr />
-        <p className="footer-copyright">Copyright 2025 © Bagify.com - All Right Reserved.</p>
+        <p className="footer-copyright">Copyright 2026 © Bagify.com - All Right Reserved.</p>
     </div>
   )
 }
