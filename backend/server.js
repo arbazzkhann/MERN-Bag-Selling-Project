@@ -37,11 +37,11 @@ app.use('/api/order', orderRouter);
 // for vercel:
 
 
-const __dirname = path.resolve();
-app.use(
-  "/images",
-  express.static(path.join(__dirname, "backend/uploads"))
-);
+// const __dirname = path.resolve();
+// app.use(
+//   "/images",
+//   express.static(path.join(__dirname, "backend/uploads"))
+// );
 
 
 app.get("/", (req, res) => {
