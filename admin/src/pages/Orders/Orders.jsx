@@ -62,10 +62,12 @@ const Orders = ({url}) => {
                         <p className='order-item-phone'>{order.address.phone}</p>
                         <p>Items: {order.items.length}</p>
                         <p>₹{order.amount}</p>
+                        <p>{order.payment === true ? "Paid" : "Not paid"}</p>
                         <select onChange={e => statusHandler(e, order._id)} value={order.status}>
                             <option value="Processing">Processing</option>
                             <option value="Out for delivery">Out for delivery</option>
                             <option value="Delivered">Delivered</option>
+                            <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
                 )

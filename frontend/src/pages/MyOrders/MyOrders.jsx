@@ -43,6 +43,7 @@ const MyOrders = () => {
                         <p>₹{order.amount}.00</p>
                         <p>items: {order.items.length}.00</p>
                         <p><span>&#x25cf;</span><b>{order.status}</b></p>
+                        <p>{order.payment === true ? "Paid" : "Not Paid"}</p>
                         <button onClick={fetchOrders}>Track Order</button>
                     </div>
                 )
