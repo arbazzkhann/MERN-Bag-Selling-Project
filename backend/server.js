@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 // import "dotenv/config.js";
+import path from "path";
 
 import { connectDB } from "./config/db.js";
 import bagRouter from "./routes/bag.route.js";
@@ -26,10 +27,21 @@ app.use(async (req, res, next) => {
 
 //api endpoints
 app.use('/api/bag', bagRouter);
-app.use('/images', express.static('uploads')); //static images endpoint
 app.use('/api/user', userRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/order', orderRouter);
+
+
+//static files - for localhost:
+// app.use('/images', express.static('uploads')); //static images endpoint
+// for vercel:
+
+
+const __dirname = path.resolve();
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "backend/uploads"))
+);
 
 
 app.get("/", (req, res) => {
