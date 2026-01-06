@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import "./Home.css";
 import Header from '../../components/Header/Header';
-import ExploreBags from '../../components/ExploreBags/ExploreBags';
 import BagDisplay from '../../components/BagDisplay/BagDisplay';
 import ViewMore from '../../components/ViewMore/ViewMore';
+import { StoreContext } from '../../context/StoreContext';
 
 const Home = () => {
-    const [category, setCategory] = useState("All")
+    const [category, setCategory] = useState("All");
+    const { topBagList } = useContext(StoreContext);
     
   return (
     <div>
         <Header/>
-        <BagDisplay category={category} setCategory={setCategory}/>
+        <BagDisplay category={category} setCategory={setCategory} bagList={topBagList}/>
         <ViewMore/>
     </div>
   )

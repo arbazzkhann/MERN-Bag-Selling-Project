@@ -8,6 +8,7 @@ const StoreContextProvider = (props) => {
     const [token, setToken] = useState("");
 
     const [bag_list, setBagList] = useState([]);
+    const [topBagList, setTopBagList] = useState([]);
 
     const addToCart = async (itemId) => {
         if(!cartItems[itemId]) {
@@ -44,11 +45,14 @@ const StoreContextProvider = (props) => {
     const fetchBagList = async () => {
         const response = await axios.get(`${url}/api/bag/list`);
         setBagList(response.data.data);
+
+        const topBagList = response.data.data.filter((item) => item.isTopProduct);
+        
+        setTopBagList(topBagList);
     }
 
     const loadCartData = async (token) => {
         const response = await axios.post(`${url}/api/cart/get`, {}, {headers: {token}});
-        console.log("response: ", response);
         setCartItems(response.data.cartData);
     }
 
@@ -78,6 +82,9 @@ const StoreContextProvider = (props) => {
         setToken,
 
         fetchBagList,
+
+        topBagList,
+        setTopBagList,
     }
 
     return (
