@@ -9,7 +9,7 @@ import List from './pages/List/List.jsx'
 import Orders from "./pages/Orders/Orders.jsx";
 
 const App = () => {
-  const url = "https://bagify-mern-project.onrender.com";
+  const url = "https://bagify-backend-1zf6.onrender.com";
 
   return (
     <div>

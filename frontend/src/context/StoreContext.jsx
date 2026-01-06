@@ -4,7 +4,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
-    const url = "https://bagify-mern-project.onrender.com";
+    const url = "https://bagify-backend-1zf6.onrender.com";
     const [token, setToken] = useState("");
 
     const [bag_list, setBagList] = useState([]);
