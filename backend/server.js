@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-// import "dotenv/config.js";
+import "dotenv/config.js";
 import path from "path";
 
 import { connectDB } from "./config/db.js";
@@ -19,10 +19,8 @@ app.use(express.json());
 app.use(cors());
 
 //db connection
-app.use(async (req, res, next) => {
-  await connectDB();
-  next();
-});
+connectDB();
+
 
 
 //api endpoints
@@ -33,22 +31,18 @@ app.use('/api/order', orderRouter);
 
 
 //static files - for localhost:
-// app.use('/images', express.static('uploads')); //static images endpoint
+app.use('/images', express.static('uploads')); //static images endpoint
 // for vercel:
-const __dirname = path.resolve();
-app.use(
-  "/images",
-  express.static(path.join(__dirname, "backend/uploads"))
-);
-
+// const __dirname = path.resolve();
+// app.use(
+//   "/images",
+//   express.static(path.join(__dirname, "backend/uploads"))
+// );
 
 app.get("/", (req, res) => {
     res.send("API is working :)");
 });
 
-// not using app.listen because of vercel - serverless
-// app.listen(PORT, (req, res) => {
-//     console.log(`server is running on http://localhost:${PORT}`);
-// });
-
-export default app;
+app.listen(PORT, (req, res) => {
+    console.log(`server is running on http://localhost:${PORT}`);
+});
