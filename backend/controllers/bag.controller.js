@@ -3,7 +3,7 @@ import fs from 'fs';
 
 //add bag item
 const addBag = async (req, res) => {
-    const { name, email, mrp, price, image, category } = req.body;
+    const { name, mrp, price, image, category, isTopProduct} = req.body;
     let image_filename = `${req.file.filename}`; 
 
     const bag = new BagModel({
@@ -11,7 +11,8 @@ const addBag = async (req, res) => {
         mrp,
         price,
         image: image_filename,
-        category
+        category,
+        isTopProduct
     });
 
     try {
@@ -109,7 +110,8 @@ const updateBag = async (req, res) => {
             name: data.name,
             category: data.category,
             mrp: data.mrp,
-            price: data.price
+            price: data.price,            
+            isTopProduct: data.isTopProduct
         },
         { new: true });
 

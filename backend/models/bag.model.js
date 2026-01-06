@@ -20,6 +20,10 @@ const bagSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true
+    },
+    isTopProduct: {
+        type: Boolean,
+        default: false
     }
 });
 

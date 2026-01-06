@@ -16,6 +16,7 @@ const List = ({ url }) => {
         category: "",
         mrp: "",
         price: "",
+        isTopProduct: ""
     });
 
     const fetchList = async () => {
@@ -54,6 +55,7 @@ const List = ({ url }) => {
             category: response.data.data.category,
             mrp: response.data.data.mrp,
             price: response.data.data.price,
+            isTopProduct: response.data.data.isTopProduct
         });
 
         setEditId(id);
@@ -61,11 +63,11 @@ const List = ({ url }) => {
     };
 
     const onChangeHandler = (e) => {
-        const { name, value } = e.target;
+        const { name, type, checked, value } = e.target;
 
         setData((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: type === "checkbox" ? checked : value
         }));
     };
 
@@ -83,6 +85,11 @@ const List = ({ url }) => {
         fetchList() //fetching all list
     }
 
+    useEffect(() => {
+        console.log(data);
+    }, [data])
+
+
     return (
         <div className="list add flex-col">
             <p>All Bags List</p>
@@ -93,6 +100,7 @@ const List = ({ url }) => {
                     <b>Category</b>
                     <b>MRP</b>
                     <b>Price</b>
+                    <b>Top Product</b>
                     <b>Action</b>
                 </div>
                 {list.map((item) => (
@@ -140,6 +148,20 @@ const List = ({ url }) => {
                             />
                         ) : (
                             <p>{item.price}</p>
+                        )}
+                        {isEdit && editId === item._id ? (
+                            <div className="checkbox-wrapper-2">
+                                <input 
+                                    onChange={onChangeHandler} 
+                                    value={data.isTopProduct} 
+                                    type="checkbox" 
+                                    name='isTopProduct'
+                                    checked={data.isTopProduct}
+                                    className="sc-gJwTLC ikxBAC"
+                                />
+                            </div>
+                        ) : (
+                            <p>{item.isTopProduct === true ? "Yes" : "No"}</p>
                         )}
 
                         <div>

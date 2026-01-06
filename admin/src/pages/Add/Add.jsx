@@ -10,14 +10,17 @@ const Add = ({url}) => {
         name: "",
         mrp: "",
         price: "",
-        category: ""
+        category: "",
+        isTopProduct: false
     });
 
     const onChangeHandler = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
+        const { name, type, checked, value } = e.target;
 
-        setData(data => ({...data, [name]: value}))
+        setData((prev) => ({
+            ...prev,
+            [name]: type === "checkbox" ? checked : value
+        }));
     }
 
 
@@ -29,6 +32,7 @@ const Add = ({url}) => {
         formData.append('mrp', Number(data.mrp));
         formData.append('price', Number(data.price));
         formData.append('category', data.category);
+        formData.append('isTopProduct', data.isTopProduct);
         formData.append('image', image);
 
         const response = await axios.post(`${url}/api/bag/add`, formData);
@@ -39,7 +43,8 @@ const Add = ({url}) => {
                 name: "",
                 mrp: "",
                 price: "",
-                category: "Backpacks"
+                category: "Backpacks",
+                isTopProduct: false
             });
             setImage(false);
             toast.success(response.data.message);
@@ -48,6 +53,10 @@ const Add = ({url}) => {
             toast.error(response.data.message);
         }
     }
+
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
 
 
   return (
@@ -89,6 +98,10 @@ const Add = ({url}) => {
                     <input onChange={onChangeHandler} value={data.price} type="number" name='price' placeholder='Enter price in INR ₹' required/>
                 </div>
             </div>
+                <div className='top-product checkbox-wrapper-2'>
+                    <p>Top Product</p>
+                    <input onChange={onChangeHandler} value={data.isTopProduct} type="checkbox" name='isTopProduct' className='sc-gJwTLC ikxBAC'/>
+                </div>
             <button type='submit' className='add-button'>ADD</button>
         </form>
     </div>
