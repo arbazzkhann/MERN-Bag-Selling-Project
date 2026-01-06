@@ -1,8 +1,8 @@
 import React from "react";
 import { ToastContainer } from 'react-toastify';
 
-import Navbar from "./components/Navbar/Navbar";
-import SideBar from "./components/SideBar/SideBar";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import SideBar from "./components/SideBar/SideBar.jsx";
 import { Routes, Route } from 'react-router-dom';
 import Add from './pages/Add/Add.jsx'
 import List from './pages/List/List.jsx'
