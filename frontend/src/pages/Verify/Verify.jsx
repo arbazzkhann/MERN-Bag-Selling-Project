@@ -41,6 +41,17 @@ const Verify = () => {
       verifyPayment();
     }, []);
 
+    useEffect(() => {
+      const success = searchParams.get("success");
+      const orderId = searchParams.get("orderId");
+
+      axios.post(`${BACKEND_URL}/api/order/verify`, {
+        success,
+        orderId
+      });
+    }, []);
+
+
 
   return (
     <div className='verify'>
