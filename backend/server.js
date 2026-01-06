@@ -19,10 +19,10 @@ app.use(express.json());
 app.use(cors());
 
 //db connection
-// app.use(async (req, res, next) => {
-//   await connectDB();
-//   next();
-// });
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 
 
 //api endpoints
@@ -35,13 +35,11 @@ app.use('/api/order', orderRouter);
 //static files - for localhost:
 // app.use('/images', express.static('uploads')); //static images endpoint
 // for vercel:
-
-
-// const __dirname = path.resolve();
-// app.use(
-//   "/images",
-//   express.static(path.join(__dirname, "backend/uploads"))
-// );
+const __dirname = path.resolve();
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "backend/uploads"))
+);
 
 
 app.get("/", (req, res) => {
