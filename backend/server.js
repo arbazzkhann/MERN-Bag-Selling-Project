@@ -41,4 +41,4 @@ app.get("/", (req, res) => {
 //     console.log(`server is running on http://localhost:${PORT}`);
 // });
 
-module.exports = app;
+export default app;
