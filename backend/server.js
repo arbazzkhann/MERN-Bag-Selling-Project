@@ -18,7 +18,12 @@ app.use(express.json());
 app.use(cors("https://mern-bag-selling-project.onrender.com"));
 
 //db connection
-connectDB();
+app.use(() => {
+    if(!connectDB) {
+        connectDB();
+    }
+    next();
+})
 
 //api endpoints
 app.use('/api/bag', bagRouter);
@@ -32,6 +37,9 @@ app.get("/", (req, res) => {
     res.send("API is working :)");
 });
 
-app.listen(PORT, (req, res) => {
-    console.log(`server is running on http://localhost:${PORT}`);
-});
+// not using app.listen because of vercel - serverless
+// app.listen(PORT, (req, res) => {
+//     console.log(`server is running on http://localhost:${PORT}`);
+// });
+
+export default app;
