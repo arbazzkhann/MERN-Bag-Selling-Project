@@ -2,7 +2,7 @@ import React from "react";
 import { ToastContainer } from 'react-toastify';
 
 import Navbar from "./components/Navbar/Navbar.jsx";
-import SideBar from "./components/SideBar/SideBar.jsx";
+import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import { Routes, Route } from 'react-router-dom';
 import Add from './pages/Add/Add.jsx'
 import List from './pages/List/List.jsx'
@@ -17,7 +17,7 @@ const App = () => {
         <Navbar />
         <hr />
         <div className="app-content">
-            <SideBar />
+            <Sidebar />
             <Routes>
               <Route path="/add" element={<Add url={url}/>}/>
               <Route path="/list" element={<List url={url}/>}/>
