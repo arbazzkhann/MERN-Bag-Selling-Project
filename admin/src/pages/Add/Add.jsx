@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Add.css'
 import axios from 'axios'
-import { assets } from '../../assets/assets'
+import { assets } from '../../assets/assets.js'
 import { toast } from 'react-toastify'
 
 const Add = ({url}) => {
