@@ -173,6 +173,7 @@
 .navbar .logo {
     width: 160px;
     transition: 0.3s ease;
+    width: 120px;
 }
 
 .navbar .logo:hover {
@@ -321,5 +322,30 @@
 @media (max-width: 900px) {
     .navbar-menu {
        display: none;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .navbar {
+        padding: 12px 18px; /* smaller padding */
+    }
+
+    .navbar .logo {
+        width: 120px;       /* reduce logo size */
+    }
+
+    .navbar-right {
+        gap: 12px;          /* reduce space */
+    }
+
+    .navbar button {
+        padding: 8px 18px;  /* smaller sign-in button */
+        font-size: 14px;
+        border-radius: 30px;
+    }
+
+    .navbar-right img {
+        width: 20px;        /* smaller cart/profile icons */
     }
 }
