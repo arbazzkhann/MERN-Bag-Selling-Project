@@ -1,4 +1,4 @@
-.explore-products {
+/* .explore-products {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -60,4 +60,129 @@
         max-width: 100%;
         font-size: 14px;
     }
+} */
+
+
+
+
+
+.explore-products-list-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* CENTER THE WHOLE SCROLL ROW */
+}
+
+.explore-products {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 20px;
+}
+
+.explore-products h1 {
+    color: #222;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: clamp(22px, 3vw, 32px);
+}
+
+/* =====================================================
+   CATEGORY LIST → ALWAYS ONE SINGLE ROW (NO WRAP)
+   ===================================================== */
+.explore-products-list {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 40px;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 10px 5px;
+    scroll-behavior: smooth;
+
+    /* Remove scrollbar */
+    -ms-overflow-style: none;      /* IE */
+    scrollbar-width: none;         /* Firefox */
+}
+
+/* Custom Scrollbar (Optional) */
+.explore-products-list::-webkit-scrollbar {
+    /* height: 6px; */
+    display: none;
+}
+
+.explore-products-list::-webkit-scrollbar-thumb {
+    /* background: #cfcfcf;
+    border-radius: 20px; */
+
+    display: none;
+}
+
+.explore-products-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* =====================================================
+   EACH CATEGORY ITEM
+   ===================================================== */
+.explore-products-list-item {
+    flex: 0 0 auto;
+    cursor: pointer;
+    transition: 0.25s ease;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* ❤️ CENTER FIX */
+    justify-content: center; /* just in case */
+    text-align: center;      /* align text */
+}
+
+
+.explore-products-list-item:hover {
+    transform: translateY(-5px);
+}
+
+/* =====================================================
+   CATEGORY IMAGE
+   ===================================================== */
+.explore-products-list-item img {
+    width: 9vw;
+    min-width: 90px;
+    max-width: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+/* ACTIVE IMAGE */
+.explore-products-list-item img.active {
+    border: 4px solid tomato;
+    padding: 0;                 /* FIXED */
+    transform: scale(1.06);     /* Reduce scale to prevent overflow */
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   CATEGORY LABEL TEXT
+   ===================================================== */
+.explore-products-list-item p {
+    margin-top: 10px;
+    color: #333;
+    font-size: clamp(15px, 1.4vw, 19px);
+    font-weight: 600;
+}
+
+.explore-products-list-item img.active + p {
+    color: tomato;
+}
+
+/* Divider */
+.explore-products hr {
+    margin: 10px 0px;
+    height: 2px;
+    background-color: #e2e2e2;
+    border: none;
 }
