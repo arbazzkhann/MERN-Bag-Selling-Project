@@ -121,6 +121,14 @@ const registerUser = async (req, res) => {
   const { name, email, password, accessCode, isAdmin } = req.body;
 
   try {
+    // Prevent admin creation with wrong access code
+    if (isAdmin && accessCode !== process.env.ACCESS_CODE) {
+      return res.status(403).json({
+        success: false,
+        message: "Invalid admin access code. Account creation denied.",
+      });
+    }
+
     // Email already exists check
     const exists = await UserModel.findOne({ email });
     if (exists) {
@@ -134,14 +142,10 @@ const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Check if admin registration is requested
-    let finalIsAdmin = false;
+    // Set admin flag
+    const finalIsAdmin = isAdmin && accessCode === process.env.ACCESS_CODE;
 
-    if (isAdmin && accessCode === process.env.ACCESS_CODE) {
-      finalIsAdmin = true; // Allow admin creation
-    }
-
-    // Create user (normal or admin)
+    // Create user
     const newUser = await UserModel.create({
       name,
       email,
@@ -158,6 +162,7 @@ const registerUser = async (req, res) => {
         ? "Admin account created successfully"
         : "User account created successfully",
     });
+
   } catch (err) {
     console.log(err);
     res.status(400).json({
@@ -166,6 +171,7 @@ const registerUser = async (req, res) => {
     });
   }
 };
+
 
 
 export default {
