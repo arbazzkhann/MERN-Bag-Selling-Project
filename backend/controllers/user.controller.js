@@ -12,7 +12,7 @@ const loginUser = async (req, res) => {
         const user = await UserModel.findOne({ email });
 
         if (!user) {
-            return res.status(400).json({
+            return res.json({
                 success: false,
                 message: "User does not exist."
             });
@@ -21,7 +21,7 @@ const loginUser = async (req, res) => {
         // If admin login is requested
         if (isAdmin) {
             if (!user.isAdmin) {
-                return res.status(403).json({
+                return res.json({
                     success: false,
                     message: "Access denied. This is not an admin account."
                 });
@@ -47,7 +47,7 @@ const loginUser = async (req, res) => {
     } 
     catch (error) {
         console.error(error);
-        res.status(400).json({
+        res.json({
             success: false,
             message: "Error while login."
         });
@@ -60,70 +60,13 @@ const createToken = (id) => {
 }
 
 //register user
-// const registerUser = async (req, res, next) => {
-//     const { name, email, password } = req.body;
-
-//     try {
-//         const exists = await UserModel.findOne({email})
-
-//         //checking is user is already exists
-//         if(exists) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "User already exists"
-//             });
-//         }
-        
-//         //validating email format & strong password
-//         if(!validator.isEmail(email)) {
-//             return res.json({
-//                 success: false,
-//                 message: "Please enter a valid email."
-//             });
-//         }
-
-//         //checking password length
-//         if(password.length < 8) {
-//             return res.json({
-//                 success: false,
-//                 message: "Password should atleast 8 digit"
-//             });
-//         }
-
-//         //hasing password
-//         const salt = await bcrypt.genSalt(12);
-//         const hashedPassword = await bcrypt.hash(password, salt);
-
-//         //creating user
-//         const newUser = new UserModel({
-//             name,
-//             email,
-//             password: hashedPassword
-//         });
-
-//         const user = await newUser.save();
-//         const token = createToken(user._id);
-
-//         res.json({
-//             success: true,
-//             token
-//         });
-
-//     } 
-//     catch (error) {
-//         res.status(400).json({
-//             success: false,
-//             message: "Error"
-//         });
-//     }
-// }
 const registerUser = async (req, res) => {
   const { name, email, password, accessCode, isAdmin } = req.body;
 
   try {
     // Prevent admin creation with wrong access code
     if (isAdmin && accessCode !== process.env.ACCESS_CODE) {
-      return res.status(403).json({
+      return res.json({
         success: false,
         message: "Invalid admin access code. Account creation denied.",
       });
@@ -165,7 +108,7 @@ const registerUser = async (req, res) => {
 
   } catch (err) {
     console.log(err);
-    res.status(400).json({
+    res.json({
       success: false,
       message: "Error while creating account",
     });
