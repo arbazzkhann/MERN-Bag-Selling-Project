@@ -4,60 +4,56 @@ import bcrypt from "bcrypt";
 import validator from 'validator';
 
 //login user
-const loginUser = async (req, res, next) => {
+const loginUser = async (req, res) => {
     const { email, password, isAdmin } = req.body;
 
     try {
-        let user = {}
-        if(isAdmin) {
-            user = await UserModel.findOne({
-                email,
-                isAdmin
-            });
+        // Find user by email
+        const user = await UserModel.findOne({ email });
 
-            if(user) {
-                return res.status(200).json({
-                    success: false,
-                    message: "Plese login with admin account"
-                });
-            }
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "User does not exist."
+            });
         }
-        else {
-            user = await UserModel.findOne({
-                email
-            });
 
-            //checking user is not exists
-            if(!user) {
-                return res.status(400).json({
+        // If admin login is requested
+        if (isAdmin) {
+            if (!user.isAdmin) {
+                return res.status(403).json({
                     success: false,
-                    message: "User not exists."
+                    message: "Access denied. This is not an admin account."
                 });
             }
         }
 
+        // Password match check
         const isMatch = await bcrypt.compare(password, user.password);
-        if(!isMatch) {
+        if (!isMatch) {
             return res.json({
                 success: false,
                 message: "Invalid credentials."
             });
         }
 
-        //generating token after all success
+        // Generate token
         const token = createToken(user._id);
+
         res.status(200).json({
             success: true,
             token
         });
     } 
     catch (error) {
+        console.error(error);
         res.status(400).json({
             success: false,
             message: "Error while login."
         });
     }
-}
+};
+
 
 const createToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET);
