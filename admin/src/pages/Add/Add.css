@@ -1,4 +1,4 @@
-.add {
+/* .add {
     width: 70%;
     margin-left: max(5vw, 25px);
     margin-top: 50px;
@@ -23,14 +23,11 @@
 }
 
 .add-category-price {
-    /* display: flex; 
-    flex-direction: column; */
     margin-top: 8px;
     gap: 30px;
 }
 
 .add-category-price select, .add-category-price input {
-    /* max-width: 280px; */
     width: max(40%, 280px);
     padding: 10px;
 }
@@ -65,9 +62,6 @@
 
 
 
-/* Checkbox */
-
-/* Checkbox */
 .checkbox-wrapper-2 .ikxBAC {
   appearance: none;
   background-color: #dfe1e4;
@@ -129,4 +123,220 @@
 
 .checkbox-wrapper-2 .ikxBAC:checked:hover {
   background-color: #535db3;
+} */
+
+
+
+/* ============================= */
+/*     MAIN ADD PAGE WRAPPER     */
+/* ============================= */
+.add {
+    width: 70%;
+    margin-left: max(5vw, 25px);
+    margin-top: 40px;
+
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+
+    color: #333;
+}
+
+/* Form layout */
+.add form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+
+/* ============================= */
+/*       IMAGE UPLOAD SECTION     */
+/* ============================= */
+.add-image-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-image-upload img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+
+    border-radius: 12px;
+    border: 2px dashed #b3b3b3;
+
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    transition: 0.3s ease;
+}
+
+.add-image-upload img:hover {
+    border-color: #6e79d6;
+    transform: scale(1.03);
+}
+
+
+/* ============================= */
+/*      INPUT + TEXTBOX STYLES    */
+/* ============================= */
+.add-product-name,
+.add-product-description {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.add-product-name input,
+.add-product-description textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1.5px solid #ccc;
+
+    font-size: 15px;
+    transition: 0.25s ease;
+}
+
+.add-product-name input:focus,
+.add-product-description textarea:focus {
+    border-color: #6e79d6;
+    box-shadow: 0 0 6px rgba(110,121,214,0.3);
+}
+
+
+/* ============================= */
+/*      CATEGORY & PRICE BOXES    */
+/* ============================= */
+.add-category-price {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.add-category,
+.add-price {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-category select,
+.add-category-price input {
+    width: 100%;
+    max-width: 280px;
+
+    padding: 12px;
+    border-radius: 10px;
+    border: 1.5px solid #ccc;
+
+    font-size: 15px;
+    transition: border-color 0.25s ease;
+}
+
+.add-category select:focus,
+.add-category-price input:focus {
+    border-color: #6e79d6;
+    box-shadow: 0 0 6px rgba(110,121,214,0.3);
+}
+
+
+/* ============================= */
+/*         TOP PRODUCT TOGGLE     */
+/* ============================= */
+.top-product {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: #f7f7ff;
+    padding: 12px 14px;
+
+    border-radius: 12px;
+    width: fit-content;
+}
+
+
+/* Switch Toggle */
+.checkbox-wrapper-2 .ikxBAC {
+    appearance: none;
+    background-color: #dfe1e4;
+    border-radius: 72px;
+    border-style: none;
+    height: 22px;
+    width: 38px;
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-wrapper-2 .ikxBAC::after {
+    content: "";
+    background-color: #fff;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+    transition: 0.2s ease;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked {
+    background-color: #6e79d6;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked::after {
+    left: 19px;
+}
+
+
+/* ============================= */
+/*           SUBMIT BUTTON        */
+/* ============================= */
+.add-button {
+    min-width: 150px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, black, #333);
+    color: white;
+    font-size: 16px;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.add-button:hover {
+    background: linear-gradient(135deg, #222, #000);
+    transform: translateY(-2px);
+}
+.add-button:active {
+    transform: translateY(0);
+}
+
+
+/* ============================= */
+/*            RESPONSIVE          */
+/* ============================= */
+@media (max-width: 900px) {
+    .add {
+        width: 92%;
+        margin-left: 4%;
+        padding: 20px;
+    }
+
+    .add-category-price {
+        flex-direction: column;
+    }
+
+    .add-image-upload img {
+        width: 120px;
+        height: 120px;
+    }
 }

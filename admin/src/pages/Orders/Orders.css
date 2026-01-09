@@ -1,49 +1,180 @@
-.order-item {
-    display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr 1fr;
-    align-items: start;
-    gap: 30px;
-    border: 1px solid tomato;
-    padding: 20px;
-    margin: 30px 0px;
-    font-size: 14px;
-    color: #505050;
+/* ============================== */
+/*       ORDER PAGE WRAPPER       */
+/* ============================== */
+.order {
+    width: 80%;
+    margin-left: max(5vw, 25px);
+    margin-top: 40px;
 }
 
-.order-item-bag, .order-item-name {
+.order h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* ============================== */
+/*       ORDER ITEM (CARD)        */
+/* ============================== */
+.order-item {
+    display: grid;
+    grid-template-columns: 60px 2fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: start;
+    gap: 25px;
+
+    padding: 22px;
+    margin: 25px 0;
+
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e9e9e9;
+
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    transition: 0.3s ease;
+}
+
+.order-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* ============================== */
+/*         TEXT DETAILS           */
+/* ============================== */
+.order-item-bag,
+.order-item-name {
     font-weight: 600;
+    color: #222;
 }
 
 .order-item-name {
-    margin-top: 30px;
-    margin-bottom: 5px;
+    margin-top: 8px;
 }
 
 .order-item-address {
-    margin-bottom: 10px;
+    margin-top: 6px;
+    color: #555;
 }
 
-.order-item select {
-    background-color: #ffe9e4;
-    border: 1px solid tomato;
-    width: max(10vw, 120px);
+.order-item p,
+.order-item-phone {
+    color: #444;
+    font-size: 14px;
+}
+
+/* ============================== */
+/*     PRODUCT IMAGE ICON         */
+/* ============================== */
+.order-item img {
+    width: 50px;
+    background: #f3f3f3;
     padding: 10px;
-    outline: none;
+    border-radius: 12px;
 }
 
-@media (max-width: 1000px) {
-    .order-item {
-        font-size: 12px;
-        grid-template-columns: 0.5fr 2fr 1fr 1fr;
-        padding: 15px 8px;
-    }
+/* ============================== */
+/*      STATUS DROPDOWN           */
+/* ============================== */
+.order-item select {
+    background: #f3f7ff;
+    color: #333;
 
-    .order-item select {
-        padding: 5px;
-        font-size: 12px;
+    border: 1.5px solid #c4d1ff;
+    padding: 10px;
+    width: max(9vw, 140px);
+
+    border-radius: 10px;
+    outline: none;
+
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.order-item select:hover {
+    border-color: #7c89ff;
+}
+
+.order-item select:focus {
+    border-color: #5b6bff;
+    box-shadow: 0 0 6px rgba(91,107,255,0.35);
+}
+
+/* ============================== */
+/*        RESPONSIVE RULES        */
+/* ============================== */
+
+/* Tablet Large */
+@media (max-width: 1200px) {
+    .order-item {
+        grid-template-columns: 50px 2fr 1fr 1fr 1fr;
+    }
+}
+
+/* Tablet Medium */
+@media (max-width: 950px) {
+    .order-item {
+        grid-template-columns: 50px 2fr 1fr 1fr;
+        padding: 18px;
+        gap: 18px;
+    }
+}
+
+/* Tablet Small */
+@media (max-width: 800px) {
+    .order-item {
+        grid-template-columns: 50px 1.5fr 1fr;
+        padding: 16px;
+        gap: 14px;
     }
 
     .order-item img {
         width: 40px;
+        padding: 6px;
+    }
+
+    .order-item select {
+        width: 100%;
+        font-size: 13px;
+        padding: 8px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .order-item {
+        grid-template-columns: 40px 1fr;
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .order-item p {
+        font-size: 12px;
+    }
+
+    .order-item select {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .order-item-name {
+        margin-top: 4px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 450px) {
+    .order-item {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+
+    .order-item img {
+        width: 45px;
+        margin-bottom: 10px;
+    }
+
+    .order-item select {
+        padding: 10px;
+        font-size: 14px;
     }
 }

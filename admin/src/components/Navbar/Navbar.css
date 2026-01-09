@@ -2,13 +2,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 4px;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    margin: 10px;
 }
 
 .navbar .logo {
-    width: max(10%, 80px);
+    width: 90px;
+    cursor: pointer;
 }
 
 .navbar .profile-image {
-    width: 40px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.navbar .profile-image:hover {
+    transform: scale(1.08);
 }
