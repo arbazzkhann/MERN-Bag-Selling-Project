@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
     color: #d9d9d9;
     background-color: #323232;
     display: flex;
@@ -77,5 +77,136 @@
 
     .footer-copyright {
         text-align: center;
+    }
+} */
+
+
+
+.footer {
+    color: #d9d9d9;
+    background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 6vw;
+    padding-top: 80px;
+    margin-top: 100px;
+    border-top: 2px solid rgba(255,255,255,0.1);
+}
+
+.footer-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 80px;
+}
+
+.footer-content-left,
+.footer-content-right,
+.footer-content-center {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+
+.footer-content-left img {
+    transition: transform .3s ease;
+}
+.footer-content-left img:hover {
+    transform: scale(1.07);
+}
+
+.footer-content-left p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #cfcfcf;
+}
+
+.footer-content-left li,
+.footer-content-right li,
+.footer-content-center li {
+    list-style: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.footer-content-center ul a li:hover,
+.footer-content-right li:hover {
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+.footer-social-icons img {
+    width: 35px;
+    margin-right: 15px;
+    filter: brightness(0) invert(1);
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.footer-social-icons img:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+
+.footer-content-right h2,
+.footer-content-center h2 {
+    color: #fff;
+    position: relative;
+}
+
+.footer-content-center h2::after,
+.footer-content-right h2::after {
+    content: "";
+    width: 40px;
+    height: 3px;
+    background: #ffcc00;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    border-radius: 2px;
+}
+
+/* Divider */
+.footer hr {
+    width: 100%;
+    height: 2px;
+    margin: 20px 0;
+    background-color: rgba(255,255,255,0.2);
+    border: none;
+}
+
+.footer-copyright {
+    font-size: 14px;
+    color: #bfbfbf;
+    text-align: center;
+}
+
+/* =========================
+    RESPONSIVENESS
+   ========================= */
+
+@media (max-width: 900px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 750px) {
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    .footer-content-left p {
+        font-size: 14px;
+    }
+
+    .footer hr {
+        margin: 10px 0;
     }
 }
