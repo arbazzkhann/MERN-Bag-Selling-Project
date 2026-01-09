@@ -171,9 +171,8 @@
 }
 
 .navbar .logo {
-    width: 160px;
+    width: 100px;
     transition: 0.3s ease;
-    width: 120px;
 }
 
 .navbar .logo:hover {
@@ -332,7 +331,7 @@
     }
 
     .navbar .logo {
-        width: 120px;       /* reduce logo size */
+        width: 100px;       /* reduce logo size */
     }
 
     .navbar-right {
