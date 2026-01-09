@@ -60,63 +60,113 @@ const createToken = (id) => {
 }
 
 //register user
-const registerUser = async (req, res, next) => {
-    const { name, email, password } = req.body;
+// const registerUser = async (req, res, next) => {
+//     const { name, email, password } = req.body;
 
-    try {
-        const exists = await UserModel.findOne({email})
+//     try {
+//         const exists = await UserModel.findOne({email})
 
-        //checking is user is already exists
-        if(exists) {
-            return res.status(400).json({
-                success: false,
-                message: "User already exists"
-            });
-        }
+//         //checking is user is already exists
+//         if(exists) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: "User already exists"
+//             });
+//         }
         
-        //validating email format & strong password
-        if(!validator.isEmail(email)) {
-            return res.json({
-                success: false,
-                message: "Please enter a valid email."
-            });
-        }
+//         //validating email format & strong password
+//         if(!validator.isEmail(email)) {
+//             return res.json({
+//                 success: false,
+//                 message: "Please enter a valid email."
+//             });
+//         }
 
-        //checking password length
-        if(password.length < 8) {
-            return res.json({
-                success: false,
-                message: "Password should atleast 8 digit"
-            });
-        }
+//         //checking password length
+//         if(password.length < 8) {
+//             return res.json({
+//                 success: false,
+//                 message: "Password should atleast 8 digit"
+//             });
+//         }
 
-        //hasing password
-        const salt = await bcrypt.genSalt(12);
-        const hashedPassword = await bcrypt.hash(password, salt);
+//         //hasing password
+//         const salt = await bcrypt.genSalt(12);
+//         const hashedPassword = await bcrypt.hash(password, salt);
 
-        //creating user
-        const newUser = new UserModel({
-            name,
-            email,
-            password: hashedPassword
-        });
+//         //creating user
+//         const newUser = new UserModel({
+//             name,
+//             email,
+//             password: hashedPassword
+//         });
 
-        const user = await newUser.save();
-        const token = createToken(user._id);
+//         const user = await newUser.save();
+//         const token = createToken(user._id);
 
-        res.json({
-            success: true,
-            token
-        });
+//         res.json({
+//             success: true,
+//             token
+//         });
 
-    } 
-    catch (error) {
-        res.status(400).json({
-            success: false,
-            message: "Error"
-        });
+//     } 
+//     catch (error) {
+//         res.status(400).json({
+//             success: false,
+//             message: "Error"
+//         });
+//     }
+// }
+const registerUser = async (req, res) => {
+  const { name, email, password, accessCode, isAdmin } = req.body;
+
+  try {
+    // Email already exists check
+    const exists = await UserModel.findOne({ email });
+    if (exists) {
+      return res.json({
+        success: false,
+        message: "Account already exists",
+      });
     }
-}
+
+    // Password hashing
+    const salt = await bcrypt.genSalt(12);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Check if admin registration is requested
+    let finalIsAdmin = false;
+
+    if (isAdmin && accessCode === process.env.ACCESS_CODE) {
+      finalIsAdmin = true; // Allow admin creation
+    }
+
+    // Create user (normal or admin)
+    const newUser = await UserModel.create({
+      name,
+      email,
+      password: hashedPassword,
+      isAdmin: finalIsAdmin,
+    });
+
+    const token = createToken(newUser._id);
+
+    res.status(200).json({
+      success: true,
+      token,
+      message: finalIsAdmin
+        ? "Admin account created successfully"
+        : "User account created successfully",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      success: false,
+      message: "Error while creating account",
+    });
+  }
+};
+
 
 export default {
     loginUser,
