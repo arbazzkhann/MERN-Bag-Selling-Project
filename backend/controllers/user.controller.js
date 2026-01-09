@@ -5,19 +5,35 @@ import validator from 'validator';
 
 //login user
 const loginUser = async (req, res, next) => {
-    const { email, password } = req.body;
+    const { email, password, isAdmin } = req.body;
 
     try {
-        const user = await UserModel.findOne({
-            email
-        });
-
-        //checking user is not exists
-        if(!user) {
-            return res.status(400).json({
-                success: false,
-                message: "User not exists."
+        let user = {}
+        if(isAdmin) {
+            user = await UserModel.findOne({
+                email,
+                isAdmin
             });
+
+            if(user) {
+                return res.status(200).json({
+                    success: false,
+                    message: "Plese login with admin account"
+                });
+            }
+        }
+        else {
+            user = await UserModel.findOne({
+                email
+            });
+
+            //checking user is not exists
+            if(!user) {
+                return res.status(400).json({
+                    success: false,
+                    message: "User not exists."
+                });
+            }
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
