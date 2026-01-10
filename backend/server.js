@@ -43,6 +43,25 @@ app.get("/", (req, res) => {
     res.send("API is working :)");
 });
 
-app.listen(PORT, (req, res) => {
-    console.log(`server is running on http://localhost:${PORT}`);
-});
+
+//making server for Production adn localhost both
+let url = "https://bagify-backend-1zf6.onrender.com";  //default production
+async function checkLocalhost() {
+  try {
+    const response = await fetch("http://localhost:5000/");
+    if (response.ok) {
+      url = "http://localhost:5000";
+      console.log("Using local backend:", url);
+    }
+  } catch (err) {
+    console.log("Local backend not running, using production:", url);
+  }
+}
+
+checkLocalhost();
+
+export { url };
+
+
+
+app.listen(PORT);
