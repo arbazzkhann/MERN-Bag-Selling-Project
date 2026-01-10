@@ -10,7 +10,7 @@ import List from './pages/List/List.jsx'
 import Orders from "./pages/Orders/Orders.jsx";
 import LoginPopup from "./components/LoginPopup/LoginPopup.jsx"
 import { StoreContext } from "./context/StoreContext.jsx";
-import LoginNeeded from "./components/LoginNeeded.jsx";
+import LoginNeeded from "./components/LoginNeeded/LoginNeeded.jsx";
 
 const App = () => {
   const {url, token} = useContext(StoreContext);

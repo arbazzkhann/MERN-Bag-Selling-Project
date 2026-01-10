@@ -116,8 +116,41 @@ const registerUser = async (req, res) => {
 };
 
 
+//Verify token
+const verifyUserToken = async (req, res) => {
+  const { token } = req.headers;
+  console.log("token: ", token)
+
+  if (!token){
+    return res.json({ 
+      success: false,
+      message: "Token not found"
+    });
+  }
+    
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decoded);
+
+    return res.json({ 
+      success: true, 
+      user: decoded 
+    });
+  } 
+  catch (err) {
+    return res.json({ 
+      success: false ,
+      message: "Invalid token",
+      error: err
+    });
+  }
+};
+
 
 export default {
     loginUser,
-    registerUser
+    registerUser,
+
+    verifyUserToken
 }
