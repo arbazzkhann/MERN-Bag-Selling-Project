@@ -93,7 +93,7 @@ const LoginPopup = ({ setShowLogin }) => {
           <input name="password" value={data.password} onChange={onChangeHandler} type="password" placeholder='Your password' required />
 
           {currentState === "Sign up" && (
-            <input name="accessCode" value={data.accessCode} onChange={onChangeHandler} type="text" placeholder='Enter access code' required />
+            <input name="accessCode" value={data.accessCode} onChange={onChangeHandler} type="password" placeholder='Enter access code' required />
           )}
         </div>
 
