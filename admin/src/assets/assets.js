@@ -5,6 +5,7 @@ import profile_image from './profile_image.png'
 import upload_area from './upload_area.png'
 import parcel_icon from './parcel_icon.png'
 import cross_icon from "./cross_icon.png"
+import profile_icon from "./profile_icon.png"
 
 export const assets ={
     logo,
@@ -13,5 +14,6 @@ export const assets ={
     profile_image,
     upload_area,
     parcel_icon,
-    cross_icon
+    cross_icon,
+    profile_icon
 }

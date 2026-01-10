@@ -1,0 +1,82 @@
+.login-needed-container {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #1c1c1c, #2f2f2f);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-needed-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.6s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.icon-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  height: 120px;
+  width: 120px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.login-needed-card h2 {
+  font-size: 28px;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.login-needed-card p {
+  font-size: 15px;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+.login-needed-btn {
+  background: #ff4b4b;
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
+}
+
+.login-needed-btn:hover {
+  background: #ff2e2e;
+  transform: translateY(-2px);
+}
+
+.note {
+  display: block;
+  margin-top: 15px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

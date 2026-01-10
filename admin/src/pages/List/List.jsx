@@ -85,11 +85,6 @@ const List = ({ url }) => {
         fetchList() //fetching all list
     }
 
-    useEffect(() => {
-        console.log(data);
-    }, [data])
-
-
     return (
         <div className="list add flex-col">
             <p>All Bags List</p>
