@@ -1,7 +1,10 @@
-import React, { useContext } from 'react'
+import React, { Suspense, useContext } from 'react'
 import './BagDisplay.css'
 import { StoreContext } from '../../context/StoreContext'
-import BagItem from '../BagItem/BagItem'
+import BagItemSkeleton from '../LazyLoadComponents/BagItemsSkeleton/BagItemSkeleton';
+
+//Lazy laod
+const BagItem = React.lazy(() => import('../BagItem/BagItem'));
 
 const BagDisplay = ({category, bagList}) => {
   return (
@@ -10,7 +13,11 @@ const BagDisplay = ({category, bagList}) => {
         <div className="bag-display-list">
             {bagList.map((item, index) => {
               if(category === "All" || category === item.category) {
-                return <BagItem key={index} id={item._id} name={item.name} mrp={item.mrp} price={item.price} image={item.image}/>
+                return (
+                  <Suspense fallback={<BagItemSkeleton/>}>
+                    <BagItem key={index} id={item._id} name={item.name} mrp={item.mrp} price={item.price} image={item.image}/>
+                  </Suspense>
+                );
               }
             })}
         </div>
