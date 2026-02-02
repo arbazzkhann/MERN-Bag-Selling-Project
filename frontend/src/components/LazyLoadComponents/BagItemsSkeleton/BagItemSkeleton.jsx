@@ -1,6 +1,6 @@
 import "./BagItemSkeleton.css";
 
-export default function BagItemSkeleton() {
+export default function BagItemSkeleton({length}) {
   return (
     <div className="bag-list">
       <div className="bag-item skeleton">
